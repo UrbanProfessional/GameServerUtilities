@@ -35,6 +35,7 @@ public class Server {
             e.printStackTrace();
             return ret;
         }
+        System.out.println("Is this program running as administrator?");
         return ret;
     }
 
