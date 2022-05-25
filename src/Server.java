@@ -28,24 +28,18 @@ public class Server {
         ip = ipU;
     }
 
-    public static long ping(String ip) 
-        throws UnknownHostException, IOException {
-        long ping = 0;
-        boolean up = false;
-        long sTime = System.currentTimeMillis();
-        up = InetAddress.getByName(ip).isReachable(5000);
-        long eTime = System.currentTimeMillis() - sTime;
-        ping = eTime;
-
-        if (up) {
-        return ping;
-        } else {
-        return -1;
+    public static boolean ping(String ip) {
+        boolean ret = false;
+        try {
+            ret = InetAddress.getByName(ip).isReachable(5000);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ret;
         }
+        return ret;
     }
 
-    public static void main(String[] args) 
-        throws UnknownHostException, IOException {
-        System.out.println(ping("127.0.0.1"));
+    public static void main(String[] args) {
+        System.out.println(ping("www.google.com"));
     }
 }
