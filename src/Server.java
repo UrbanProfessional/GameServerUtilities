@@ -43,22 +43,23 @@ public class Server {
         return ret;
     }
 
-    public static String connectionOut(String ip, int port) {
-        String content = null;
+    public static boolean serverUp(String ip, int port) {
         try {
-        Socket client = new Socket(ip, port);
-        Scanner scanner = new Scanner(client.getInputStream());
-        content = scanner.next();
-        scanner.close();
+        Socket server = new Socket();
+        SocketAddress sockAddr = new InetSocketAddress(ip, port);
+        server.connect(sockAddr, 5000);
+        boolean up = server.isConnected();
+        server.close();
+        return up;
         } catch (Exception e) {
-            e.printStackTrace();
+            return false;
         }
-        return content.toString();
     }
 
-
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+        throws Exception {
         System.out.println(ping("91.216.250.33"));
-        System.out.println(connectionOut("91.216.250.33", 27015));
+        System.out.println(serverUp("91.216.250.33", 27015));
+        System.out.println(InetAddress.getLocalHost());
     }
 }
