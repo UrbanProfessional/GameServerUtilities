@@ -6,13 +6,13 @@ public class TFserver extends Server {
         map = "";
     }
 
-    public TFserver(boolean isOnlineU, String ipU) {
-        super(isOnlineU, ipU);
+    public TFserver(String ipU) {
+        super(ipU);
         map = "";
     }
 
-    public TFserver(boolean isOnlineU, int pingU, int playersU, String mapU, String ipU) {
-        super(isOnlineU,pingU,playersU, ipU);
+    public TFserver(int pingU, int playersU, String mapU, String ipU) {
+        super(pingU,playersU, ipU);
         map = mapU;
     }
 }

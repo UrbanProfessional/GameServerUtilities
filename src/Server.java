@@ -15,35 +15,38 @@ public class Server {
         ip = "";
     }
 
-    public Server(boolean isOnlineU, String ipU) {
-        isOnline = isOnlineU;
+    public Server(String ipU) {
+        isOnline = serverUp(ipU, 443);
         ping = 0;
         players = 0;
         ip = ipU;
     }
 
-    public Server(boolean isOnlineU, int pingU, int playersU, String ipU) {
-        isOnline = isOnlineU;
+    public Server(int pingU, int playersU, String ipU) {
+        isOnline = serverUp(ipU, 443);
         ping = pingU;
         players = playersU;
         ip = ipU;
     }
 
-    public static boolean ping(String ip) {
-        boolean ret = false;
+    private static int ping(String ip) {
+        long start;
+        long ping;
         try {
-            ret = InetAddress.getByName(ip).isReachable(5000);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ret;
-        }
-        if (!ret) {
-        System.out.println("Is this program running as administrator?");
-        }
-        return ret;
+            start = System.currentTimeMillis();
+            Socket server = new Socket();
+            SocketAddress sockAddr = new InetSocketAddress(ip, 443);
+            server.connect(sockAddr, 5000);
+            ping = System.currentTimeMillis();
+            boolean up = server.isConnected();
+            server.close();
+            return (int) (start - ping);
+            } catch (Exception e) {
+                return 0;
+            }
     }
 
-    public static boolean serverUp(String ip, int port) {
+    private static boolean serverUp(String ip, int port) {
         try {
         Socket server = new Socket();
         SocketAddress sockAddr = new InetSocketAddress(ip, port);
@@ -55,11 +58,28 @@ public class Server {
             return false;
         }
     }
-
+/*
     public static void main(String[] args) 
         throws Exception {
-        System.out.println(ping("91.216.250.33"));
-        System.out.println(serverUp("91.216.250.33", 27015));
+        System.out.println(ping("172.58.224.33"));
+        System.out.println(serverUp("172.58.224.33", 443));
         System.out.println(InetAddress.getLocalHost());
+    }
+*/
+    public String getIP() {
+        return ip;
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public int ping() {
+        return ping;
+    }
+
+    public void update() {
+        isOnline = serverUp(ip, 443);
+        ping = ping(ip);
     }
 }

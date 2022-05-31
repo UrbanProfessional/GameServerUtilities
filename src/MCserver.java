@@ -6,13 +6,13 @@ public class MCserver extends Server {
         version = "";
     }
 
-    public MCserver(boolean isOnlineU, String ipU) {
-        super(isOnlineU, ipU);
+    public MCserver(String ipU) {
+        super(ipU);
         version = "";
     }
 
-    public MCserver(boolean isOnlineU, int pingU, int playersU, String versionU, String ipU) {
-        super(isOnlineU,pingU,playersU, ipU);
+    public MCserver(int pingU, int playersU, String versionU, String ipU) {
+        super(pingU,playersU, ipU);
         version = versionU;
     }
 }
