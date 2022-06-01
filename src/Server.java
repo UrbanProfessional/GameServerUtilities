@@ -34,13 +34,14 @@ public class Server {
         long ping;
         try {
             start = System.currentTimeMillis();
+            System.out.println(start);
             Socket server = new Socket();
             SocketAddress sockAddr = new InetSocketAddress(ip, 443);
             server.connect(sockAddr, 5000);
             ping = System.currentTimeMillis();
-            boolean up = server.isConnected();
+            System.out.println(ping);
             server.close();
-            return (int) (start - ping);
+            return (int) (ping - start);
             } catch (Exception e) {
                 return 0;
             }
