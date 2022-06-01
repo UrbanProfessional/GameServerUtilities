@@ -30,7 +30,7 @@ public class GUI {
     public static void main(String[] args) {
         GUI g = new GUI();
         g.launchGUI();
-        Server s = new Server("172.58.224.33");
+        Server s = new Server("mofucraft.net");
         g.build(s);
         g.update();
     }

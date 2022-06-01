@@ -3,6 +3,7 @@ import javax.swing.*;
 public class GUIItem {
     JPanel j = new JPanel();
     public GUIItem(Server s) {
+        s.update();
         j.setSize(100,100);
         String up = "DOWN";
         JLabel ip = new JLabel(s.getIP());
