@@ -1,10 +1,14 @@
+import java.awt.Color;
+
 import javax.swing.*;
 
 public class GUIItem {
     JPanel j = new JPanel();
     public GUIItem(Server s) {
+        j.setVisible(true);
         s.update();
-        j.setSize(100,100);
+        j.setBounds(0,200,0,200);
+        j.setBackground(Color.black);
         String up = "DOWN";
         JLabel ip = new JLabel(s.getIP());
 
@@ -24,4 +28,5 @@ public class GUIItem {
     public JPanel getPanel() {
         return j;
     }
+
 }
