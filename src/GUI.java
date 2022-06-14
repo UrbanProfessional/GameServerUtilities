@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.net.DatagramSocket;
 
 public class GUI extends JFrame implements ActionListener {
     private JPanel panel, background;
+    private boolean buildServer = false;
+    private String inputtedIP;
 
     public void launchGUI() {
 
@@ -25,7 +26,7 @@ public class GUI extends JFrame implements ActionListener {
         add.addActionListener(this);
         panel.add(add);
         panel.add(new JLabel(""));
-        panel.add(new JButton("Remove"));
+        panel.add(new JButton("Click Me"));
         panel.add(new JLabel(""));
         panel.add(new JLabel(""));
         panel.add(new JLabel(""));
@@ -59,27 +60,10 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e){  
-        JFrame serverInput = new JFrame();
-        serverInput.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        serverInput.setResizable(false);
-        serverInput.setTitle("Server List Input");
-        serverInput.setSize(300,150);
-        serverInput.setLocationRelativeTo(null);
-
-        JPanel inputScreen = new JPanel();  
-        inputScreen.setBackground(Color.BLACK);
-        inputScreen.setLayout(new GridLayout(2, 1));
-
-        JLabel inputTitle = new JLabel("Input IP:");
-        inputTitle.setForeground(Color.white);
-        inputScreen.add(inputTitle);
-
-        JTextField inputIP = new JTextField();
-        inputScreen.add(inputIP);
-
-        serverInput.add(inputScreen);
-        serverInput.setVisible(true);
+        GUIInput i = new GUIInput(this);
+        i.launchGUI();
     }  
+
 
     public static void main(String[] args) {
         GUI g = new GUI();

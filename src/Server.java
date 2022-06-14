@@ -1,6 +1,4 @@
 import java.net.*;
-import java.io.*;
-import java.util.*;
 
 public class Server {
     private boolean isOnline;
