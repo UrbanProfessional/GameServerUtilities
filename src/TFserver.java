@@ -1,3 +1,5 @@
+//NOT IMPLEMENTED
+
 public class TFserver extends Server {
     private String map;
 

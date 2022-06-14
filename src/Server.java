@@ -34,12 +34,10 @@ public class Server {
         long ping;
         try {
             start = System.currentTimeMillis();
-            System.out.println(start);
             Socket server = new Socket();
             SocketAddress sockAddr = new InetSocketAddress(ip, 443);
             server.connect(sockAddr, 5000);
             ping = System.currentTimeMillis();
-            System.out.println(ping);
             server.close();
             return (int) (ping - start);
             } catch (Exception e) {
@@ -59,14 +57,7 @@ public class Server {
             return false;
         }
     }
-/*
-    public static void main(String[] args) 
-        throws Exception {
-        System.out.println(ping("172.58.224.33"));
-        System.out.println(serverUp("172.58.224.33", 443));
-        System.out.println(InetAddress.getLocalHost());
-    }
-*/
+    
     public String getIP() {
         return ip;
     }
